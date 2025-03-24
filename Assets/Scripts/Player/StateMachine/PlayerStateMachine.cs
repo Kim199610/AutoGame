@@ -7,7 +7,7 @@ public class PlayerStateMachine : StateMachine
     public Player Player { get; }
     public Transform MainCameraTransform { get; set; }
     public PlayerIdleState IdleState { get; set; }
-    public PlayerGoNextState GoNextState { get; set; }
+    public PlayerMoveState GoNextState { get; set; }
     public PlayerSearchState SearchState { get; set; }
     public PlayerAttackState AttackState { get; set; }
 

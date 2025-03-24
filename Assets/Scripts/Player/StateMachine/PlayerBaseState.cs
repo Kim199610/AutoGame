@@ -11,28 +11,37 @@ public class PlayerBaseState : MonoBehaviour, IState
         this.playerStateMachine = playerStateMachine;
     }
 
-    public void Enter()
+    public virtual void Enter()
     {
 
     }
 
-    public void Exit()
+    public virtual void Exit()
     {
 
     }
 
-    public void HandleInput()
+    public virtual void HandleInput()
     {
 
     }
 
-    public void PhysicsUpdate()
+    public virtual void PhysicsUpdate()
     {
 
     }
 
-    public void Update()
+    public virtual void Update()
     {
 
+    }
+    protected void StartAnimation(int animationHash)
+    {
+        playerStateMachine.Player.Animator.SetBool(animationHash, true);
+    }
+
+    protected void StopAnimation(int animationHash)
+    {
+        playerStateMachine.Player.Animator.SetBool(animationHash, false);
     }
 }
