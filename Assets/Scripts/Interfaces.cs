@@ -10,3 +10,8 @@ public interface IState
     public void Update();
     public void PhysicsUpdate();
 }
+
+public interface Idamagable
+{
+    public void Damage(int damage);
+}

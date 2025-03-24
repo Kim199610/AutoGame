@@ -2,17 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : MonoBehaviour
+public class PlayerAttackState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool isAttacking;
+    public PlayerAttackState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
-        
+    }
+    public override void Enter()
+    {
+        base.Enter();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        base.Exit();
+        StopAnimation(player.AnimationData.AttackParameterHash);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if (!IsInAttackRange() && !isAttacking)
+        {
+            playerStateMachine.ChangeState(playerStateMachine.MoveState);
+        }
+        else if (CanAttack())
+        {
+            StartAnimation(player.AnimationData.AttackParameterHash);
+            isAttacking = true;
+        }
+
+
+
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        Rotate(isAttacking);
+    }
+    
+    bool CanAttack()
+    {
+        return (Vector3.Angle(targetDirection, player.transform.forward) <= 5f);
+    }
+    bool IsInAttackRange()
+    {
+        return (player.target.transform.position - player.transform.position).sqrMagnitude <= ((player.attackRange + 0.1f) * (player.attackRange + 0.1f));
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
@@ -7,8 +8,7 @@ public class PlayerStateMachine : StateMachine
     public Player Player { get; }
     public Transform MainCameraTransform { get; set; }
     public PlayerIdleState IdleState { get; set; }
-    public PlayerMoveState GoNextState { get; set; }
-    public PlayerSearchState SearchState { get; set; }
+    public PlayerMoveState MoveState { get; set; }
     public PlayerAttackState AttackState { get; set; }
 
     public PlayerStateMachine(Player player)
@@ -17,6 +17,8 @@ public class PlayerStateMachine : StateMachine
 
         MainCameraTransform = Camera.main.transform;
 
-
+        IdleState = new PlayerIdleState(this);
+        MoveState = new PlayerMoveState(this);
+        AttackState = new PlayerAttackState(this);
     }
 }
