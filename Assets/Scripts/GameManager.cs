@@ -7,8 +7,18 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int curStage;
     public Player player;
+    public GameUI gameUI;
 
-    public int gold;
+    private int gold;
+    public int Gold
+    {
+        get { return gold; }
+        set
+        {
+            gold = value;
+            gameUI?.UpdateGold(Gold);
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -21,4 +31,9 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void Start()
+    {
+        gameUI?.UpdateGold(Gold);
+    }
+
 }

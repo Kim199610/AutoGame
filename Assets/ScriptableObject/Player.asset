@@ -15,5 +15,7 @@ MonoBehaviour:
   attack: 10
   attackRange: 1
   attackSpeed: 1
-  moveSpeed: 3
+  moveSpeed: 5
   maxHP: 100
+  expGive: 0
+  goldGive: 0

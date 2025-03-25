@@ -20,25 +20,16 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
         get { return curHP; }
         set
         {
-            if (curHP == 0) return;
-            curHP = Mathf.Clamp(value, 0, MaxHP);
-            if (curHP == 0)
-            {
-                onDie();
-            }
+            CurHPChange(value);
         }
     }
-    protected int level;
+    protected int level = 1;
     public virtual int Level
     {
         get {  return level; }
         set
         {
-            Attack += attackPerLevel * (value - level);
-            MaxHP += maxHPPerLevel * (value - level);
-            MaxExp += maxExpPerLevel * (value - level);
-
-            level = value;
+            LevelUp(value);
         }
     }
     protected int exp;
@@ -47,16 +38,7 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
         get { return exp; }
         set
         {
-            if (value >= MaxExp)
-            {
-                value = value - MaxExp;
-                Level++;
-                Exp = value;
-            }
-            else
-            {
-                exp = value;
-            }
+            GainExp(value);
         }
     }
     protected int expGive;
@@ -99,11 +81,40 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
     {
         onDie += action;
     }
+    protected virtual void LevelUp(int value)
+    {
+        Attack += attackPerLevel * (value - level);
+        MaxHP += maxHPPerLevel * (value - level);
+        MaxExp += maxExpPerLevel * (value - level);
 
+        level = value;
+    }
+    protected virtual void GainExp(int value)
+    {
+        if (value >= MaxExp)
+        {
+            value = value - MaxExp;
+            Level++;
+            Exp = value;
+        }
+        else
+        {
+            exp = value;
+        }
+    }
+    protected virtual void CurHPChange(int value)
+    {
+        if (curHP == 0) return;
+        curHP = Mathf.Clamp(value, 0, MaxHP);
+        if (curHP == 0)
+        {
+            onDie();
+        }
+    }
     void GiveReward()
     {
         GameManager.Instance.player.statHandler.Exp += expGive;
-        GameManager.Instance.gold += goldGive;
+        GameManager.Instance.Gold += goldGive;
         Debug.Log($"{expGive}∞Ê«Ëƒ°»πµÊ {goldGive}∞ÒµÂ»πµÊ");
     }
 }
