@@ -44,5 +44,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
+    public void EnemyDie(Enemy enemy)
+    {
+        for(int i = 0;i < enemys.Count; i++)
+        {
+            if (enemys[i].Contains(enemy))
+            {
+                enemys[i].Remove(enemy);
+                return;
+            }
+        }
+    }
 }

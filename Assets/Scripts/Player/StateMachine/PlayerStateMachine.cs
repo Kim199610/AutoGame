@@ -10,6 +10,7 @@ public class PlayerStateMachine : StateMachine
     public PlayerIdleState IdleState { get; set; }
     public PlayerMoveState MoveState { get; set; }
     public PlayerAttackState AttackState { get; set; }
+    public PlayerDieState DieState { get; set; }
 
     public PlayerStateMachine(Player player)
     {
@@ -20,5 +21,6 @@ public class PlayerStateMachine : StateMachine
         IdleState = new PlayerIdleState(this);
         MoveState = new PlayerMoveState(this);
         AttackState = new PlayerAttackState(this);
+        DieState = new PlayerDieState(this);
     }
 }

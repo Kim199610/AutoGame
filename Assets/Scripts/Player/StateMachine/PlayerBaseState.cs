@@ -41,12 +41,12 @@ public class PlayerBaseState : IState
     }
     protected void StartAnimation(int animationHash)
     {
-        player.Animator.SetBool(animationHash, true);
+        player._animator.SetBool(animationHash, true);
     }
 
     protected void StopAnimation(int animationHash)
     {
-        player.Animator.SetBool(animationHash, false);
+        player._animator.SetBool(animationHash, false);
     }
     protected void SetTargetDirection()
     {
@@ -58,7 +58,7 @@ public class PlayerBaseState : IState
         if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, targetRotation, (isAttacking? 0.3f : 1f) * player.rotateSpeed * Time.deltaTime);
+            player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, targetRotation, (isAttacking? 0.3f : 1f) * player.statHandler.rotateSpeed * Time.deltaTime);
         }
     }
 }

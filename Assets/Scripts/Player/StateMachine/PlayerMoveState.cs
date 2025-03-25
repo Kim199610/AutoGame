@@ -37,13 +37,13 @@ public class PlayerMoveState : PlayerBaseState
 
     void move()
     {
-        float moveSpeed = player.moveSpeed;
+        float moveSpeed = player.statHandler.MoveSpeed;
         player.Controller.Move(targetDirection * moveSpeed * Time.deltaTime);
     }
     
 
     bool IsInAttackRange()
     {
-        return (player.target.transform.position - player.transform.position).sqrMagnitude <= (player.attackRange * player.attackRange);
+        return (player.target.transform.position - player.transform.position).sqrMagnitude <= (player.statHandler.AttackRange * player.statHandler.AttackRange);
     }
 }

@@ -47,6 +47,6 @@ public class PlayerAttackState : PlayerBaseState
     }
     bool IsInAttackRange()
     {
-        return (player.target.transform.position - player.transform.position).sqrMagnitude <= ((player.attackRange + 0.1f) * (player.attackRange + 0.1f));
+        return (player.target.transform.position - player.transform.position).sqrMagnitude <= ((player.statHandler.AttackRange + 0.1f) * (player.statHandler.AttackRange + 0.1f));
     }
 }

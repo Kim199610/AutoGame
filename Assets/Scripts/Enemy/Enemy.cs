@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public bool isDie;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    Animator _animator;
+    EnemyStatHandler enemyStatHandler;
+
+    private void Awake()
     {
-        
+        _animator = GetComponentInChildren<Animator>();
+        enemyStatHandler = GetComponentInChildren<EnemyStatHandler>();
+        enemyStatHandler.AddOnDieAction(OnDie);
+    }
+    void OnDie()
+    {
+        _animator.SetTrigger("Die");
+        EnemyManager.instance.EnemyDie(this);
+        Invoke("Die", 5f);
+    }
+    void Die()
+    {
+        gameObject.SetActive(false);
     }
 }

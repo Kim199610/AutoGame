@@ -10,24 +10,24 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] BoxCollider comboThreeHitCollider;
     int damage;
 
-    List<Idamagable> idamagables;
+    List<Idamagable> idamagables = new List<Idamagable>();
     public void ComboOneAttack()
     {
         idamagables.Clear();
-        damage = player.damage;
+        damage = player.statHandler.Attack;
         comboOneHitCollider.enabled = true;
     }
     public void ComboTwoAttack()
     {
         idamagables.Clear();
-        damage = player.damage;
+        damage = player.statHandler.Attack;
         comboTwoHitCollider.enabled = true;
     }
     public void ComboThreeAttack()
     {
         idamagables.Clear();
-        damage = (int)(player.damage * 1.5f);
-        comboTwoHitCollider.enabled = true;
+        damage = (int)(player.statHandler.Attack * 1.5f);
+        comboThreeHitCollider.enabled = true;
     }
     public void DisableCollider()
     {

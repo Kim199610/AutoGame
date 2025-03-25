@@ -5,16 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerStateMachine playerStateMachine;
-    public Animator Animator { get; private set; }
+    public Animator _animator;
     public CharacterController Controller {  get; private set; }
     [field: SerializeField] public AnimationData AnimationData { get; private set; }
     public Enemy target;
-
-
-    public float moveSpeed;
-    public float rotateSpeed;
-    public float attackRange;
-    public int damage;
+    public PlayerStatHandler statHandler;
 
     private void Awake()
     {
@@ -22,10 +17,13 @@ public class Player : MonoBehaviour
 
         playerStateMachine = new PlayerStateMachine(this);
         Controller = GetComponent<CharacterController>();
-        Animator = GetComponentInChildren<Animator>();
+        _animator = GetComponentInChildren<Animator>();
+        statHandler = GetComponent<PlayerStatHandler>();
+        
     }
     private void Start()
     {
+        GameManager.Instance.player = this;
         //playerStateMachine.ChangeState(playerStateMachine.IdleState);
         playerStateMachine.ChangeState(playerStateMachine.MoveState);
     }
@@ -62,4 +60,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 }
