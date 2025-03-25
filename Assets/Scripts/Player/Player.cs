@@ -11,14 +11,15 @@ public class Player : MonoBehaviour
     public Enemy target;
     public PlayerStatHandler statHandler;
 
+    public bool isDie = false;
     private void Awake()
     {
         AnimationData.Initialize();
-
-        playerStateMachine = new PlayerStateMachine(this);
         Controller = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
         statHandler = GetComponent<PlayerStatHandler>();
+        playerStateMachine = new PlayerStateMachine(this);
+        statHandler.AddOnDieAction(OnDie);
         
     }
     private void Start()
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
             {
                 for(int j = 0; j < enemys[i].Count; j++)
                 {
-                    if(target == null)
+                    if(target == null || !enemys[i].Contains(target))
                     {
                         target = enemys[i][j];
                     }
@@ -60,5 +61,14 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    void OnDie()
+    {
+        isDie = true;
+        Controller.enabled = false;
+        Invoke("Die", 5f);
+    }
+    void Die()
+    {
+        gameObject.SetActive(false);
+    }
 }

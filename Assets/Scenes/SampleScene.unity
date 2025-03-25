@@ -170,6 +170,7 @@ MonoBehaviour:
   enemyGroupCount: 10
   enemyPrefab:
   - {fileID: 6043732468305273720, guid: 84a3c1b4a3aeabc44acd59fb76d51485, type: 3}
+  player: {fileID: 735446760}
 --- !u!1 &276787904
 GameObject:
   m_ObjectHideFlags: 0

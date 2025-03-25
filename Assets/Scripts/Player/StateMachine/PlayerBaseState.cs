@@ -13,6 +13,7 @@ public class PlayerBaseState : IState
     {
         this.playerStateMachine = playerStateMachine;
         player = playerStateMachine.Player;
+        player.statHandler.AddOnDieAction(Die);
     }
 
     public virtual void Enter()
@@ -60,5 +61,9 @@ public class PlayerBaseState : IState
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, targetRotation, (isAttacking? 0.3f : 1f) * player.statHandler.rotateSpeed * Time.deltaTime);
         }
+    }
+    protected void Die()
+    {
+        playerStateMachine.ChangeState(playerStateMachine.DieState);
     }
 }

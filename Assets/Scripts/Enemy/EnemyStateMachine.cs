@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+public class EnemyStateMachine : StateMachine
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Enemy Enemy { get; }
+    public EnemyIdleState IdleState { get; set; }
+    public EnemyMoveState MoveState { get; set; }
+    public EnemyAttackState AttackState { get; set; }
+    public EnemyDieState DieState { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public EnemyStateMachine(Enemy enemy)
     {
-        
+        this.Enemy = enemy;
+
+        IdleState = new EnemyIdleState(this);
+        MoveState = new EnemyMoveState(this);
+        AttackState = new EnemyAttackState(this);
+        DieState = new EnemyDieState(this);
     }
 }

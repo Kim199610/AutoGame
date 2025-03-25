@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyStatHandler : BaseStatHandler
 {
-
+    public float DetectingRange;
 }

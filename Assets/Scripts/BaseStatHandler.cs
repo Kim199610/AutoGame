@@ -20,6 +20,7 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
         get { return curHP; }
         set
         {
+            if (curHP == 0) return;
             curHP = Mathf.Clamp(value, 0, MaxHP);
             if (curHP == 0)
             {
@@ -82,7 +83,7 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
     }
     protected virtual void Start()
     {
-        CurHP = MaxHP;
+        curHP = MaxHP;
     }
     public virtual void ChangeHP(int value)
     {
@@ -103,5 +104,6 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
     {
         GameManager.Instance.player.statHandler.Exp += expGive;
         GameManager.Instance.gold += goldGive;
+        Debug.Log($"{expGive}∞Ê«Ëƒ°»πµÊ {goldGive}∞ÒµÂ»πµÊ");
     }
 }

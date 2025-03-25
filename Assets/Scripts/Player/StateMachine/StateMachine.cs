@@ -19,7 +19,6 @@ public abstract class StateMachine
 
     public void Update()
     {
-
         currentState?.Update();
     }
 

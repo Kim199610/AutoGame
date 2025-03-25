@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
 
     public static EnemyManager instance;
     [SerializeField] GameObject[] enemyPrefab;
+    public Player player;
 
     public List<List<Enemy>> enemys = new List<List<Enemy>>();
 
@@ -51,6 +52,7 @@ public class EnemyManager : MonoBehaviour
             if (enemys[i].Contains(enemy))
             {
                 enemys[i].Remove(enemy);
+                Debug.Log($"목록에서{enemy}제거됨");
                 return;
             }
         }

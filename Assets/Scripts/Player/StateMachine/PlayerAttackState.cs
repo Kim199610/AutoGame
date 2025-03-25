@@ -31,6 +31,10 @@ public class PlayerAttackState : PlayerBaseState
             StartAnimation(player.AnimationData.AttackParameterHash);
             isAttacking = true;
         }
+        else
+        {
+            StopAnimation(player.AnimationData.AttackParameterHash);
+        }
 
 
 

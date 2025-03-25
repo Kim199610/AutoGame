@@ -10,6 +10,6 @@ public class PlayerDieState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        StartAnimation(playerStateMachine.Player.AnimationData.DieParameterHash);
+        player._animator.SetTrigger(player.AnimationData.DieParameterHash);
     }
 }

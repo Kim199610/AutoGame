@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88b5c741aba4f845a0cfc301caa81f6, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  attack: 5
+  attack: 30
   attackRange: 1
   attackSpeed: 1
-  moveSpeed: 3
+  moveSpeed: 1
   maxHP: 50
   expGive: 10
   goldGive: 200
