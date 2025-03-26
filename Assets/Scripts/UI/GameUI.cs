@@ -11,13 +11,18 @@ public class GameUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI goldTxt;
     [SerializeField] TextMeshProUGUI stageTxt;
     [SerializeField] TextMeshProUGUI levelTxt;
-
+    [SerializeField] Button HealButton;
     private void Start()
     {
         GameManager.Instance.gameUI = this;
         GameManager.Instance.player.statHandler.UpdateAtStart(this);
         UpdateGold(GameManager.Instance.Gold);
         UpdateStage(GameManager.Instance.curStage);
+        HealButton.onClick.AddListener(Heal);
+    }
+    void Heal()
+    {
+        GameManager.Instance.Heal();
     }
     public void UpdateHP(float value)
     {

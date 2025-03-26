@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] Button inventoryButton;
+    [SerializeField] GameObject inventoryWindow;
     public InventorySlots inventorySlots;
     public Slot selectItemSlot;
     [SerializeField] TextMeshProUGUI selectItemName;
@@ -21,6 +24,7 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
+        inventoryButton.onClick.AddListener(ClickInventoryIcon);
     }
     private void OnEnable()
     {
@@ -28,6 +32,10 @@ public class Inventory : MonoBehaviour
         selectItemSlot = null;
         selectItemName.gameObject.SetActive(false);
         selectItemDescription.gameObject.SetActive(false);
+    }
+    void ClickInventoryIcon()
+    {
+        inventoryWindow.SetActive(!inventoryWindow.activeSelf);
     }
     public bool SetItemToInventory(ItemData ItemData, int upgrade)
     {

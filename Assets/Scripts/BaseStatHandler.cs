@@ -6,15 +6,32 @@ using UnityEngine;
 public class BaseStatHandler : MonoBehaviour,Idamagable
 {
     [SerializeField]protected StatData _data;
-    public virtual int Attack {  get; private set; }
-    public virtual float AttackSpeed { get; private set; }
+    protected int attack;
+    public virtual int Attack
+    {
+        get { return attack; }
+        set { attack = value; }
+    }
+    protected float attackSpeed;
+    public virtual float AttackSpeed
+    {
+        get { return attackSpeed; }
+        set { attackSpeed = value; }
+    }
     public virtual float AttackRange { get; private set; }
-    public virtual float MoveSpeed {  get; private set; }
-    public int MaxHP {  get; private set; }
+    protected float moveSpeed;
+    public virtual float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
+    protected int maxHP;
+    public virtual int MaxHP
+    {
+        get { return maxHP; }
+        set { maxHP = value; }
+    }
     protected int curHP;
-
-    public Action onDie;
-    
     public virtual int CurHP
     {
         get { return curHP; }
@@ -45,6 +62,7 @@ public class BaseStatHandler : MonoBehaviour,Idamagable
     protected int goldGive;
     public virtual int MaxExp { get; private set; }
 
+    public Action onDie;
 
     [SerializeField] protected int attackPerLevel;
     [SerializeField] protected int maxHPPerLevel;

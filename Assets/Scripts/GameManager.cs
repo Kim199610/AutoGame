@@ -31,5 +31,14 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    public void Heal()
+    {
+        if(Gold < 300)
+        {
+            Debug.Log("µ·ºÎÁ·");
+            return;
+        }
+        Gold -= 300;
+        player.statHandler.ChangeHP(100);
+    }
 }
