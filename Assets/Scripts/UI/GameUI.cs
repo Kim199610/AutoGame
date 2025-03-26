@@ -15,6 +15,9 @@ public class GameUI : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.gameUI = this;
+        GameManager.Instance.player.statHandler.UpdateAtStart(this);
+        UpdateGold(GameManager.Instance.Gold);
+        UpdateStage(GameManager.Instance.curStage);
     }
     public void UpdateHP(float value)
     {

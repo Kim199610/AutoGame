@@ -11,9 +11,13 @@ public class PlayerStatHandler : BaseStatHandler
     protected override void Start()
     {
         base.Start();
-        GameManager.Instance.gameUI.UpdateHP(CurHP / ((float)MaxHP));
-        GameManager.Instance.gameUI.UpdateLevel(Level);
-        GameManager.Instance.gameUI.UpdateExp(((float)Exp) / MaxExp);
+        
+    }
+    public void UpdateAtStart(GameUI gameUI)
+    {
+        gameUI.UpdateHP(CurHP / ((float)MaxHP));
+        gameUI.UpdateLevel(Level);
+        gameUI.UpdateExp(((float)Exp) / MaxExp);
     }
     protected override void CurHPChange(int value)
     {
